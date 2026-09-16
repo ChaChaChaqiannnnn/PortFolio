@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Your Name — Creative Developer",
-  description: "Creative developer crafting playful WebGL experiences and thoughtful digital products.",
+  title: "Chia Qian — Creative Technologist",
+  description: "The interactive portfolio of Chia Qian: product engineering, automation, algorithms and expressive digital experiments.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
