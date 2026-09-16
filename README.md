@@ -45,7 +45,14 @@ The production portfolio is hosted on Cloudflare Workers:
 
 [chia-qian-portfolio.1211107977.workers.dev](https://chia-qian-portfolio.1211107977.workers.dev)
 
-The original preview remains available on [ChatGPT Sites](https://serene-creative-developer.hongchiaqian.chatgpt.site), but the Cloudflare URL is the recommended link to share.
+
+## Technical skills
+
+- **Languages:** TypeScript, JavaScript, Python, Java, SQL
+- **Frontend:** React, Next.js, Vinext, Tailwind CSS, responsive UI
+- **Creative development:** Three.js, WebGL, motion design, interactive storytelling
+- **Engineering:** testing automation, Selenium, algorithms, object-oriented design
+- **Platforms and tools:** Cloudflare Workers, Firebase, Git, GitHub
 
 ## Deploy to Cloudflare
 
