@@ -68,6 +68,25 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const visibleProjects = useMemo(() => projects.filter((project) => activeFilter === "All" || project.category === activeFilter), [activeFilter]);
+  const moveProject = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const card = event.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    card.style.setProperty("--mx", `${x * 100}%`);
+    card.style.setProperty("--my", `${y * 100}%`);
+    card.style.setProperty("--rx", `${(0.5 - y) * 8}deg`);
+    card.style.setProperty("--ry", `${(x - 0.5) * 10}deg`);
+    card.style.setProperty("--shift-x", `${(x - 0.5) * 28}px`);
+    card.style.setProperty("--shift-y", `${(y - 0.5) * 22}px`);
+  };
+  const leaveProject = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const card = event.currentTarget;
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
+    card.style.setProperty("--shift-x", "0px");
+    card.style.setProperty("--shift-y", "0px");
+  };
   useEffect(() => {
     const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("is-visible") }), { threshold: 0.14 });
     document.querySelectorAll("[data-reveal]").forEach((element) => revealObserver.observe(element));
@@ -79,7 +98,7 @@ export default function Home() {
     <div className="scroll-progress" aria-hidden="true" />
     <nav className="nav-shell" aria-label="Main navigation"><a className="wordmark" href="#top" aria-label="Home"><span>SRN</span><i /></a><div className="nav-links"><a href="#work">Work <sup>06</sup></a><a href="#about">About</a></div><a className="available" href="mailto:hello@example.com"><span /> Available for work</a></nav>
     <section className="hero" id="top"><div className="hero-copy"><p className="eyebrow"><Asterisk size={16} /> Creative developer · Kuala Lumpur</p><h1>I make digital<br />things that feel<br /><em>almost alive.</em></h1><p className="intro">I design and develop playful interfaces, WebGL worlds and thoughtful digital products.</p></div><div className="hero-world"><WebGLWorld /><p className="drag-note">Move your cursor <span>↗</span></p></div><a href="#work" className="scroll-cue"><ArrowDownRight size={18} /> Explore the work</a></section>
-    <section className="work-section" id="work"><div className="section-heading" data-reveal><p className="eyebrow"><Sparkles size={15} /> Selected work</p><h2>Ideas, shipped.</h2><p>A growing archive of experiments, products and beautifully odd things for the web.</p></div><div className="filter-row" aria-label="Filter projects" data-reveal>{filters.map((filter) => <button key={filter} className={activeFilter === filter ? "active" : ""} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div><div className="project-list">{visibleProjects.map((project, index) => <button className="project-row" data-reveal key={project.id} onClick={() => setSelectedProject(project)} style={{ "--project-color": project.color, "--delay": `${index * 70}ms` } as React.CSSProperties}><span className="project-index">{project.index}</span><span className="project-orb" /><span className="project-title">{project.title}</span><span className="project-meta">{project.category} · {project.year}</span><span className="project-arrow"><ArrowUpRight size={24} /></span></button>)}</div></section>
+    <section className="work-section" id="work"><div className="section-heading" data-reveal><p className="eyebrow"><Sparkles size={15} /> Selected work</p><h2>Ideas, shipped.</h2><p>A growing archive of experiments, products and beautifully odd things for the web.</p></div><div className="filter-row" aria-label="Filter projects" data-reveal>{filters.map((filter) => <button key={filter} className={activeFilter === filter ? "active" : ""} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div><div className="project-list">{visibleProjects.map((project, index) => <div className="project-reveal" data-reveal key={project.id} style={{ "--delay": `${index * 90}ms` } as React.CSSProperties}><button className="project-card" onPointerMove={moveProject} onPointerLeave={leaveProject} onClick={() => setSelectedProject(project)} style={{ "--project-color": project.color } as React.CSSProperties}><span className="project-glow" /><span className="project-visual" aria-hidden="true"><i /><i /><i /><b>{project.index}</b></span><span className="project-content"><span className="project-topline"><span>{project.category}</span><span>{project.year}</span></span><span className="project-title">{project.title}</span><span className="project-description">{project.description}</span><span className="project-stack">{project.stack.map((item) => <em key={item}>{item}</em>)}</span></span><span className="project-cta">Explore <ArrowUpRight size={20} /></span></button></div>)}</div></section>
     <section className="about-section" id="about"><p className="eyebrow" data-reveal><Asterisk size={15} /> About</p><div className="about-grid" data-reveal><h2>Part engineer,<br />part daydreamer.</h2><div><p>I turn ambitious ideas into expressive, performant experiences. My sweet spot is where precise engineering meets a little visual mischief.</p><div className="skills"><span>Creative direction</span><span>Frontend systems</span><span>WebGL / shaders</span><span>Product design</span></div></div></div></section>
     <footer><p>Have a strange idea?</p><a href="mailto:hello@example.com">Let’s make it real <ArrowUpRight /></a><div><span>© 2026 Your Name</span><span><a href="#"><Code2 size={16} /> GitHub</a><a href="mailto:hello@example.com"><Mail size={16} /> Email</a></span></div></footer>
     <Dialog open={Boolean(selectedProject)} onOpenChange={(open) => !open && setSelectedProject(null)}><DialogContent className="project-dialog" style={{ "--project-color": selectedProject?.color } as React.CSSProperties}>{selectedProject && <><DialogHeader><DialogDescription>{selectedProject.index} / {selectedProject.category} · {selectedProject.year}</DialogDescription><DialogTitle>{selectedProject.title}</DialogTitle></DialogHeader><div className="dialog-art"><span /><span /><span /></div><p className="dialog-copy">{selectedProject.description}</p><div className="dialog-stack">{selectedProject.stack.map((item) => <span key={item}>{item}</span>)}</div><a className="case-link" href="#">View case study <ArrowUpRight size={18} /></a></>}</DialogContent></Dialog>
