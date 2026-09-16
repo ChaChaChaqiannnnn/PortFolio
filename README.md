@@ -41,7 +41,27 @@ npm run build
 
 ## Live portfolio
 
-[serene-creative-developer.hongchiaqian.chatgpt.site](https://serene-creative-developer.hongchiaqian.chatgpt.site)
+The production portfolio is hosted on Cloudflare Workers:
+
+[chia-qian-portfolio.1211107977.workers.dev](https://chia-qian-portfolio.1211107977.workers.dev)
+
+The original preview remains available on [ChatGPT Sites](https://serene-creative-developer.hongchiaqian.chatgpt.site), but the Cloudflare URL is the recommended link to share.
+
+## Deploy to Cloudflare
+
+Build the Vinext app, then deploy the generated Worker bundle:
+
+```bash
+npm ci
+npm run build
+npx wrangler deploy --config dist/server/wrangler.json --name chia-qian-portfolio --keep-vars
+```
+
+Wrangler uses your authenticated Cloudflare account. A `workers.dev` subdomain (or a custom domain/route) must be enabled in Cloudflare before the first public deployment.
+
+## Security
+
+The app is intentionally a small, public portfolio with no application database or authenticated API. It ships browser security headers including Content Security Policy, clickjacking protection, MIME-sniffing protection, a strict referrer policy, and a restrictive Permissions Policy. Keep secrets out of the repository and use Wrangler secrets if server-side integrations are added later.
 
 ## Author
 
