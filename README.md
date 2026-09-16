@@ -24,27 +24,11 @@ The camera travels through a continuous WebGL world while each project appears a
 
 `React 19` · `TypeScript` · `Three.js` · `Vinext` · `Tailwind CSS`
 
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Then open [http://localhost:5173](http://localhost:5173).
-
-Create a production build with:
-
-```bash
-npm run build
-```
-
 ## Live portfolio
 
 The production portfolio is hosted on Cloudflare Workers:
 
 [chia-qian-portfolio.1211107977.workers.dev](https://chia-qian-portfolio.1211107977.workers.dev)
-
 
 ## Technical skills
 
