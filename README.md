@@ -1,6 +1,6 @@
 # Chia Qian — Cinematic Portfolio
 
-An interactive portfolio for **Hong Chia Qian**, designed as a scroll-directed digital film rather than a conventional project gallery.
+An employer-facing interactive portfolio for **Hong Chia Qian**, designed as a scroll-directed digital film rather than a conventional project gallery.
 
 The camera travels through a continuous WebGL world while each project appears as its own scene, combining cinematic pacing, expressive typography and pastel light with real software-engineering work.
 
@@ -14,6 +14,8 @@ The camera travels through a continuous WebGL world while each project appears a
 - Project case files with GitHub and live-demo links
 
 ## Featured work
+
+CogniPlan is presented as the lead professional case study, followed by work demonstrating automation, algorithms, and software architecture.
 
 - **CogniPlan** — intelligent study planning with spaced repetition and cognitive-load signals
 - **Web Verification Lab** — automated browser testing, monitoring and visual evidence
