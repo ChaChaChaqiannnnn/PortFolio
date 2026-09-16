@@ -69,7 +69,7 @@ export default function Home(){
     <Cursor/>
     <div className={`opening-credit ${booting?"is-playing":"is-finished"}`} aria-hidden={!booting}><p>Hong Chia Qian presents</p><h2>A portfolio<br/><em>in motion</em></h2><span>Creative technologist · MMU · 2026</span></div>
     <div className="page-progress" aria-hidden="true"/>
-    <nav className="nav-shell"><a className="wordmark" href="#top">CQ</a><p>Creative technologist<br/>Kuala Lumpur · MY</p><div><a href="#work">Work</a><a href="#about">About</a><a href="mailto:hongchiaqian@gmail.com">Contact ↗</a></div></nav>
+    <nav className="nav-shell"><a className="wordmark" href="#top">CQ</a><p>Creative technologist<br/>Kuala Lumpur · MY</p><div><a href="#work">Work</a><a href="#about">About</a><a href="/hong-chia-qian-resume.pdf" download>Resume ↓</a><a href="mailto:hongchiaqian@gmail.com">Contact ↗</a></div></nav>
     <section className="film" id="top">
       <div className="film-stage"><CinematicWorld/><div className="light-leak"/><div className="film-noise"/><div className="letterbox top"/><div className="letterbox bottom"/><p className="scene-code">SCENE {String(activeIndex).padStart(2,"0")} / 04</p><p className="sound-note">BEST VIEWED WITH<br/>CURIOSITY ON</p><div className="timeline"><i/><span style={{"--scene":activeIndex} as React.CSSProperties}/></div></div>
       <div className="story">
